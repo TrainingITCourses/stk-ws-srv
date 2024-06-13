@@ -3,5 +3,41 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "stk-srv": {
+      "projectType": "library",
+      "root": "projects/stk-srv",
+      "sourceRoot": "projects/stk-srv/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/stk-srv/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/stk-srv/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/stk-srv/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/stk-srv/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
   }
 }
