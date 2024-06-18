@@ -6,10 +6,11 @@ export type PlatformEvent<T> = { type: string; payload: T };
 
 export type PlatformData = {
   appName: string;
+  payload: any;
 };
 
 @Injectable({
-  providedIn: 'platform',
+  providedIn: 'root',
 })
 export class PlatformStore {
   #initialEvent = { type: 'INIT', payload: null };
@@ -18,7 +19,7 @@ export class PlatformStore {
   events$ = this.#events.asObservable();
   events = toSignal(this.events$, { initialValue: this.#initialEvent });
 
-  #initialData: PlatformData = { appName: 'Lab Platform' };
+  #initialData: PlatformData = { appName: 'Lab Platform', payload: null };
   #data: WritableSignal<PlatformData> = signal(this.#initialData);
 
   get data(): Signal<PlatformData> {
